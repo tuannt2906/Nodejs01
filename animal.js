@@ -12,10 +12,14 @@ const animals = [
     { id: 10, name: 'German Shepherd', type: 1, isTrained: true }
   ];
 
-export const animapType = {
-    DOG: 122,
-    BIRD: 2
-}
+// animal.js
+const AnimalType = {
+    BIRD: 0,
+    MAMMAL: 1
+};
+
+module.exports = { AnimalType };
+
 const hello = (name) => new Promise((resolve, _reject) => {
     setTimeout(() => {
     resolve(`Hello ${name}`)
@@ -90,3 +94,9 @@ async function getHelloMessages(names) {
         }
     });
 }
+
+let animalsGet = JSON.parse(JSON.stringify(animals));
+for (let i = 0; i < animalsGet.length; i++) {
+    animalsGet[i] = null;
+}
+console.log(animals);
