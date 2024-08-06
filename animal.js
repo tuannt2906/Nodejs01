@@ -71,3 +71,18 @@ async function getHelloMessages(names) {
     const results = await Promise.all(promises);
     return results;
 }
+
+//Promise.allSetted
+async function getHelloMessages(names) {
+    const promises = names.map(name => hello(name));
+    const results = await Promise.allSettled(promises);
+
+    // Xử lý kết quả của các Promise - GPT =))
+    return results.map(result => {
+        if (result.status === 'fulfilled') {
+            return { status: 'fulfilled', value: result.value };
+        } else {
+            return { status: 'rejected', reason: result.reason };
+        }
+    });
+}
