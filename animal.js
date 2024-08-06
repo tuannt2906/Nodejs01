@@ -59,6 +59,13 @@ function getAnimal(type) {
         });
 }
 
+//destructuring with function getAnimal
+function getAnimalD (type) {
+    return animals
+        .filter(({type: animalType}) => animalType === type)
+        .map(({type, ...rest}) => rest);
+}
+
 async function getHelloMessages(names) {
     const promises = names.map(name => hello(name));
     const results = await Promise.all(promises);
