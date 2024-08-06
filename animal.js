@@ -11,7 +11,11 @@ const animals = [
     { id: 9, name: 'Poodle', type: 1}, 
     { id: 10, name: 'German Shepherd', type: 1, isTrained: true }
   ];
-  
+
+export const animapType = {
+    DOG: 122,
+    BIRD: 2
+}
 const hello = (name) => new Promise((resolve, _reject) => {
     setTimeout(() => {
     resolve(`Hello ${name}`)

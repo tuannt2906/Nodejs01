@@ -1,11 +1,11 @@
-const { getAnimal, getHelloMessages } = require('./animal');
+const { getAnimal, getHelloMessages, animapType } = require('./animal');
 
 async function main() {
     // Gọi hàm getAnimals
     console.log('All Animals:', getAnimals());
 
     // Gọi hàm getAnimal với type = 0
-    const animalsOfType0 = getAnimal(0);
+    const animalsOfType0 = getAnimal(animapType.DOG);
     console.log('Animals of type 0:', animalsOfType0);
 
     // Gọi hàm getHelloMessages với mảng các tên
