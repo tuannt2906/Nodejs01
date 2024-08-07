@@ -1,4 +1,3 @@
-// src/animal.ts
 import { AnimalType, Animal } from './types';
 
 const animals: Animal[] = [
@@ -14,7 +13,6 @@ const animals: Animal[] = [
   { id: 10, name: 'German Shepherd', type: AnimalType.MAMMAL, isTrained: true }
 ];
 
-
 const hello = (name: string): Promise<string> => new Promise((resolve, _reject) => {
     setTimeout(() => {
         resolve(`Hello ${name}`);
@@ -27,18 +25,22 @@ const finalAnimals: Animal[] = [
         name: 'German Shepherd',
         type: AnimalType.MAMMAL,
         isTrained: true,
-        tags: ['test1', 'test2'], // Sửa thành mảng chuỗi
+        tags: {
+            test1: 'test1',
+            test2: 2,
+            test3: false,
+        },
         children: [
             {
                 id: 11,
                 name: 'German Shepherd1',
-                type: AnimalType.MAMMAL, // Cung cấp thuộc tính type
+                type: AnimalType.MAMMAL,
             },
             {
                 id: 12,
                 name: 'German Shepherd2',
+                type: AnimalType.MAMMAL,
                 isTrained: true,
-                type: AnimalType.MAMMAL, // Cung cấp thuộc tính type
             },
         ]
     }
@@ -55,18 +57,30 @@ function getAnimal(type: AnimalType): Omit<Animal, 'type'>[] {
 }
 
 function getHelloMessages(names: string[]): Promise<string[]> {
-    return Promise.all(names.map(name => hello(name)))   
+    return Promise.all(names.map(name => hello(name)));
 }
 
-async function getHelloMessagesSettled(names: string[]): Promise<{ status: string; value?: string; reason?: any }[]> {
+interface FulfilledResult {
+    status: 'fulfilled';
+    value: string;
+}
+
+interface RejectedResult {
+    status: 'rejected';
+    reason: any;
+}
+
+type Result = FulfilledResult | RejectedResult;
+
+async function getHelloMessagesSettled(names: string[]): Promise<Result[]> {
     const promises = names.map(name => hello(name));
     const results = await Promise.allSettled(promises);
 
     return results.map(result => {
         if (result.status === 'fulfilled') {
-            return { status: 'fulfilled', value: result.value };
+            return { status: 'fulfilled', value: result.value } as FulfilledResult;
         } else {
-            return { status: 'rejected', reason: result.reason };
+            return { status: 'rejected', reason: result.reason } as RejectedResult;
         }
     });
 }
