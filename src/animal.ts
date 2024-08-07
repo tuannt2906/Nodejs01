@@ -79,9 +79,8 @@ async function getHelloMessagesSettled(names: string[]): Promise<Result[]> {
     return results.map(result => {
         if (result.status === 'fulfilled') {
             return { status: 'fulfilled', value: result.value } as FulfilledResult;
-        } else {
-            return { status: 'rejected', reason: result.reason } as RejectedResult;
         }
+        return { status: 'rejected', reason: result.reason } as RejectedResult;
     });
 }
 
