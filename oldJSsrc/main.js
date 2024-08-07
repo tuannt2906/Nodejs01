@@ -1,4 +1,4 @@
-const { getAnimal, getHelloMessages, animapType } = require('./animal');
+const { getAnimal, getHelloMessages, animapType } = require('../oldJSsrc/animal');
 
 async function main() {
     // Gọi hàm getAnimals
