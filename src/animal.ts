@@ -1,4 +1,4 @@
-import { AnimalType, Animal } from './types';
+import { AnimalType, Animal } from '@src/types';
 
 const animals: Animal[] = [
   { id: 1, name: 'Sparrow', type: AnimalType.BIRD, wingSpan: 25, isFly: true },

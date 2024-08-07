@@ -10,7 +10,7 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": "./src",
     "paths": {
-      "*": ["*", "../node_modules/*"]
+      "@src/*": ["*"]
     }
   },
   "include": [
