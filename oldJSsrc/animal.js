@@ -96,6 +96,7 @@ async function getHelloMessages(names) {
 }
 
 let animalsGet = JSON.parse(JSON.stringify(animals));
+
 for (let i = 0; i < animalsGet.length; i++) {
     animalsGet[i] = null;
 }
