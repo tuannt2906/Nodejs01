@@ -54,10 +54,8 @@ function getAnimal(type: AnimalType): Omit<Animal, 'type'>[] {
         .map(({ type, ...rest }) => rest);
 }
 
-async function getHelloMessages(names: string[]): Promise<string[]> {
-    const promises = names.map(name => hello(name));
-    const results = await Promise.all(promises);
-    return results;
+function getHelloMessages(names: string[]): Promise<string[]> {
+    return Promise.all(names.map(name => hello(name)))   
 }
 
 async function getHelloMessagesSettled(names: string[]): Promise<{ status: string; value?: string; reason?: any }[]> {
